@@ -16,7 +16,7 @@ const helmet = require('helmet')
 const { users, posts } = require('./data/index.js');
 
 dotenv.config();
-const uri = process.env.MONGODB_URI
+const uri = mongodb+srv://malikzeyan:gz8JRMvZa7dNbqbo@cluster0.1x3r12y.mongodb.net/socialmedia?retryWrites=true&w=majority
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
