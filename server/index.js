@@ -14,11 +14,9 @@ const User = require('./models/User.js');
 const Post = require('./models/Post.js');
 const helmet = require('helmet')
 const { users, posts } = require('./data/index.js');
-const uri = process.env.MONGODB_URI
-
-
 
 dotenv.config();
+const uri = process.env.MONGODB_URI
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
@@ -112,10 +110,11 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 
 app.use("/posts", postRoutes);
-
-
-const PORT = process.env.PORT || 6001;
-mongoose
+const connecttomongo= async ()=>{
+  
+  
+  const PORT = process.env.PORT || 6001;
+  await mongoose
   .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -126,3 +125,5 @@ mongoose
     //Post.insertMany(posts);
   })
   .catch((error) => console.log(`${error} did not connect`));
+}
+  connecttomongo()
