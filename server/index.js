@@ -14,7 +14,7 @@ const User = require('./models/User.js');
 const Post = require('./models/Post.js');
 const helmet = require('helmet')
 const { users, posts } = require('./data/index.js');
-const uri = 'mongodb+srv://zeyannaveed2:GymW6MP2F7SwnffB@cluster0.m9o85pe.mongodb.net/socialmedia?retryWrites=true&w=majority'
+const uri = process.env.MONGODB_URI
 
 
 
