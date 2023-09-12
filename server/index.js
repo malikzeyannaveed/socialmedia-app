@@ -46,6 +46,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+app.get("/",(req,res)=>{
+  res.send("hello world")
+})
 
 
 //Done
