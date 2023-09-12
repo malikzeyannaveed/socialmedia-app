@@ -14,7 +14,7 @@ const User = require('./models/User.js');
 const Post = require('./models/Post.js');
 const helmet = require('helmet')
 const { users, posts } = require('./data/index.js');
-
+const uri = 'mongodb+srv://zeyannaveed2:GymW6MP2F7SwnffB@cluster0.m9o85pe.mongodb.net/socialmedia?retryWrites=true&w=majority'
 
 
 
@@ -116,7 +116,7 @@ app.use("/posts", postRoutes);
 
 const PORT = process.env.PORT || 6001;
 mongoose
-  .connect(process.env.MONGODB_URL, {
+  .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
