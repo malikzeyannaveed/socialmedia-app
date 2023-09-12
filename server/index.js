@@ -23,7 +23,7 @@ app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 const corsOptions = {
-  origin: 'https://socialmedia-app-iehy.vercel.app/',
+  origin: 'https://socialmedia-app-iehy.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // You may need this depending on your use case.
 };
