@@ -28,7 +28,6 @@ export default function Friend({ friendId, name, userPicturePath}) {
       }
     );
     const data = await response.json();
-    console.log(data)
     dispatch(setFriends({ friends: data }));
   };
 
@@ -40,10 +39,7 @@ export default function Friend({ friendId, name, userPicturePath}) {
     <div className="lef">
 <div className="main flex">
     <img className="w-14 h-14 object-contain rounded-full " src={`${import.meta.env.VITE_APP_IMAGE}${userPicturePath}`} alt="" />
-    <h3 className="text-black cursor-pointer dark:text-white font-base ml-2 mt-3 text-base" onClick={() => {
-            navigate(`/profile/${friendId}`);
-            navigate(0);
-          }}>{name}</h3>
+    <h3 className="text-black  dark:text-white font-base ml-2 mt-3 text-base">{name}</h3>
 </div>
     </div>
     <div className="righ">
