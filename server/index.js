@@ -13,7 +13,7 @@ const  verifyToken = require('./middleware/auth.js');
 const User = require('./models/User.js');
 const Post = require('./models/Post.js');
 const helmet = require('helmet')
-//const { users, posts } = require('./data/index.js');
+const { users, posts } = require('./data/index.js');
 
 
 
@@ -119,5 +119,7 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+    //Post.insertMany(posts);
   })
   .catch((error) => console.log(`${error} did not connect`));

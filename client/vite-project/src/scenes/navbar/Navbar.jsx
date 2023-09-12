@@ -59,7 +59,7 @@ navigate("/login");
 
       </div>
       <div className="logo -mr-20">
-<h2 className='text-cyan-500 text-4xl font-extrabold'>InstaVibes</h2>
+<h2 className='text-cyan-500 max-md:text-3xl text-4xl font-extrabold'>InstaVibes</h2>
 
       </div>
       <div className="side mr-5 flex ">

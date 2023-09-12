@@ -22,7 +22,7 @@ getData()
   return (
     <div className='container '>
 {user ?
-      <div className='bg-white dark:bg-neutral-900 w-fit shadow-lg rounded-lg p-4'>
+      <div className='bg-white dark:bg-neutral-900  shadow-lg rounded-lg p-4'>
         <div className='flex mb-2'>
             <img className='w-14 h-14 object-contain  rounded-full ' src={`${import.meta.env.VITE_APP_IMAGE}${user.picturePath}`} alt="" />
             <h2 className='text-black dark:text-white font-semibold ml-2 mt-3 text-lg'>{user.name}</h2>

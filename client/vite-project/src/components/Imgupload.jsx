@@ -7,29 +7,47 @@ import {setPosts} from '../state/index'
 export default function Imgupload() {
   const dispatch = useDispatch()
   const [desc, setdesc] = useState('')
-  const [first, setfirst] = useState()
+  const [img, setimg] = useState()
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
 
-  const onDrop = useCallback((acceptedFiles) => {
-    const formData = new FormData();
-    formData.append('picture', acceptedFiles[0]);
-formData.append('userId',user._id);
-formData.append('name',user.name);
-formData.append('userPicturePath',user.picturePath);
-formData.append('description',desc);
-setfirst(formData)
-console.log(desc)
-}, [desc,user._id,user.name,user.picturePath]);
+//   const onDrop = useCallback((acceptedFiles) => {
+//     setimg(acceptedFiles[0])
+
+// }, []);
+
+const onDrop = useCallback((acceptedFiles) => {
+  console.log("Accepted Files:", acceptedFiles);
+  setimg(acceptedFiles[0]);
+}, [])
+
+
+
+
+const makedata = ()=>{
+
+  const formData = new FormData();
+  formData.append('picture',img);
+  formData.append('userId',user._id);
+  formData.append('name',user.name);
+  formData.append('userPicturePath',user.picturePath);
+  formData.append('description',desc);
+return formData
+}
+
+
 
 const handleclick = async ()=>{
+ 
+  const makeddata = await makedata()
   const response = await fetch(`${import.meta.env.VITE_APP_API_URL}posts`, {
       method: "POST",
       headers:{auth_token:`${token}`},
-      body: first,
+      body: makeddata,
     });
     const posts = await response.json();
     dispatch(setPosts({ posts }));
+
   }
 
 
@@ -39,7 +57,7 @@ const handleclick = async ()=>{
 
   return (
     <div>
-      <div className="mx-20">
+      <div className="">
         <div className="bg-white dark:bg-neutral-900 dark:text-white rounded-3xl px-5 py-2 shadow-md ">
           <div className="py-2 px-2">
           <div {...getRootProps()} className="dropzone border-dashed  border-2 py-6 px-4" >

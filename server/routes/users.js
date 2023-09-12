@@ -6,8 +6,11 @@ const User = require('../models/User.js');
 //Done
 router.get("/:id", verifyToken, async (req, res) => {
   try {
+    
     const { id } = req.params;
-    const user = await User.findById(id);
+    console.log(id)
+    console.log(req.body)
+    const user = await User.findById({_id:id});
     res.status(200).json(user);
   } catch (err) {
     res.status(404).json({ message: err.message });
@@ -23,8 +26,8 @@ router.get("/:id/friends", verifyToken, async (req, res) => {
       user.friends.map((id) => User.findById(id))
     );
     const formattedFriends = friends.map(
-      ({ _id, firstName, lastName, occupation, location, picturePath }) => {
-        return { _id, firstName, lastName, occupation, location, picturePath };
+      ({ _id,name,picturePath }) => {
+        return { _id, name, picturePath };
       }
     );
     res.status(200).json(formattedFriends);
@@ -40,6 +43,8 @@ router.patch("/:id/:friendId", verifyToken,async (req, res) => {
     const { id, friendId } = req.params;
     const user = await User.findById(id);
     const friend = await User.findById(friendId);
+    console.log(user,friend)
+    console.log(id,friendId)
 
     if (user.friends.includes(friendId)) {
       user.friends = user.friends.filter((id) => id !== friendId);
@@ -55,8 +60,8 @@ router.patch("/:id/:friendId", verifyToken,async (req, res) => {
       user.friends.map((id) => User.findById(id))
     );
     const formattedFriends = friends.map(
-      ({ _id, firstName, lastName, occupation, location, picturePath }) => {
-        return { _id, firstName, lastName, occupation, location, picturePath };
+      ({ _id, name,picturePath }) => {
+        return { _id, name,picturePath };
       }
     );
 
